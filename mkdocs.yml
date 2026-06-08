@@ -63,6 +63,7 @@ nav:
   - Home: index.md
   - Blog:
     - blog/index.md
+  - About: about.md
 
 extra:
   social:
