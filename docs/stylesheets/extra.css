@@ -1,0 +1,35 @@
+/*
+ * Naruto's Tech Blog — Custom Styles
+ */
+
+:root {
+  --md-primary-fg-color: #3f51b5;
+  --md-primary-fg-color--light: #757de8;
+  --md-primary-fg-color--dark: #002984;
+  --md-accent-fg-color: #ffb300;
+}
+
+.md-header {
+  font-weight: 600;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-primary-fg-color);
+}
+
+.blog-post-date {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85rem;
+}
+
+.md-typeset blockquote {
+  border-left: 4px solid var(--md-accent-fg-color);
+  background: rgba(255, 179, 0, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+footer.md-footer {
+  font-size: 0.75rem;
+}
