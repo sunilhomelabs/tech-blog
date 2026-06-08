@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,5 +31,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build and deploy
-        run: mkdocs gh-deploy --force
+      - name: Configure git
+        run: |
+          git config user.name "naruto[bot]"
+          git config user.email "naruto@sunil.cc"
+
+      - name: Build and deploy to gh-pages
+        run: mkdocs gh-deploy --force --remote-name origin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
