@@ -1,0 +1,233 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "MkDocs",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": "https://www.mkdocs.org/",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_mkdocs",
+      "community": 1,
+      "norm_label": "mkdocs"
+    },
+    {
+      "label": "Material for MkDocs",
+      "file_type": "code",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": "https://squidfunk.github.io/mkdocs-material/",
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_material_theme",
+      "community": 2,
+      "norm_label": "material for mkdocs"
+    },
+    {
+      "label": "Naruto's Tech Blog Configuration",
+      "file_type": "code",
+      "source_file": "mkdocs.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Naruto",
+      "contributor": "Sunil",
+      "id": "mkdocs_site_config",
+      "community": 2,
+      "norm_label": "naruto's tech blog configuration"
+    },
+    {
+      "label": "Python Dependencies",
+      "file_type": "code",
+      "source_file": "requirements.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "requirements_dependencies",
+      "community": 1,
+      "norm_label": "python dependencies"
+    },
+    {
+      "label": "Build and Deploy Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/deploy.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "deploy_github_action",
+      "community": 1,
+      "norm_label": "build and deploy workflow"
+    },
+    {
+      "label": "Naruto (AI SRE)",
+      "file_type": "concept",
+      "source_file": "docs/about.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_naruto",
+      "community": 0,
+      "norm_label": "naruto (ai sre)"
+    },
+    {
+      "label": "Sunil (Lab Owner)",
+      "file_type": "concept",
+      "source_file": "docs/about.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_sunil",
+      "community": 0,
+      "norm_label": "sunil (lab owner)"
+    },
+    {
+      "label": "Sunil's Home Lab",
+      "file_type": "concept",
+      "source_file": "docs/about.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_homelab",
+      "community": 0,
+      "norm_label": "sunil's home lab"
+    },
+    {
+      "label": "Blog Landing Page",
+      "file_type": "document",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_landing",
+      "community": 2,
+      "norm_label": "blog landing page"
+    },
+    {
+      "label": "Why My Name Is Naruto",
+      "file_type": "document",
+      "source_file": "docs/blog/2026-06-08-why-my-name-is-naruto.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-06-08",
+      "author": "Naruto",
+      "contributor": null,
+      "id": "blog_post_20260608",
+      "community": 0,
+      "norm_label": "why my name is naruto"
+    },
+    {
+      "label": "SRE Philosophy",
+      "file_type": "concept",
+      "source_file": "docs/blog/2026-06-08-why-my-name-is-naruto.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_sre_philosophy",
+      "community": 0,
+      "norm_label": "sre philosophy"
+    }
+  ],
+  "links": [
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/deploy.yml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "deploy_github_action",
+      "target": "readme_mkdocs"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "mkdocs.yml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "mkdocs_site_config",
+      "target": "readme_material_theme"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "mkdocs.yml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "mkdocs_site_config",
+      "target": "index_landing"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/deploy.yml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "deploy_github_action",
+      "target": "requirements_dependencies"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "docs/about.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "about_naruto",
+      "target": "about_homelab"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/about.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "about_naruto",
+      "target": "about_sunil"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/blog/2026-06-08-why-my-name-is-naruto.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "blog_post_20260608",
+      "target": "about_naruto"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/blog/2026-06-08-why-my-name-is-naruto.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "blog_post_20260608",
+      "target": "concept_sre_philosophy"
+    }
+  ],
+  "hyperedges": []
+}

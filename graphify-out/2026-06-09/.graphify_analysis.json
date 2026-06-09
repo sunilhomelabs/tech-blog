@@ -1,0 +1,139 @@
+{
+  "communities": {
+    "0": [
+      "about_homelab",
+      "about_naruto",
+      "about_sunil",
+      "blog_post_20260608",
+      "concept_sre_philosophy"
+    ],
+    "1": [
+      "deploy_github_action",
+      "readme_mkdocs",
+      "requirements_dependencies"
+    ],
+    "2": [
+      "index_landing",
+      "mkdocs_site_config",
+      "readme_material_theme"
+    ]
+  },
+  "cohesion": {
+    "0": 0.4,
+    "1": 0.6666666666666666,
+    "2": 0.6666666666666666
+  },
+  "gods": [
+    {
+      "id": "about_naruto",
+      "label": "Naruto (AI SRE)",
+      "degree": 3
+    },
+    {
+      "id": "mkdocs_site_config",
+      "label": "Naruto's Tech Blog Configuration",
+      "degree": 2
+    },
+    {
+      "id": "deploy_github_action",
+      "label": "Build and Deploy Workflow",
+      "degree": 2
+    },
+    {
+      "id": "blog_post_20260608",
+      "label": "Why My Name Is Naruto",
+      "degree": 2
+    },
+    {
+      "id": "readme_mkdocs",
+      "label": "MkDocs",
+      "degree": 1
+    },
+    {
+      "id": "readme_material_theme",
+      "label": "Material for MkDocs",
+      "degree": 1
+    },
+    {
+      "id": "requirements_dependencies",
+      "label": "Python Dependencies",
+      "degree": 1
+    },
+    {
+      "id": "about_sunil",
+      "label": "Sunil (Lab Owner)",
+      "degree": 1
+    },
+    {
+      "id": "about_homelab",
+      "label": "Sunil's Home Lab",
+      "degree": 1
+    },
+    {
+      "id": "index_landing",
+      "label": "Blog Landing Page",
+      "degree": 1
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Build and Deploy Workflow",
+      "target": "MkDocs",
+      "source_files": [
+        ".github/workflows/deploy.yml",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Naruto's Tech Blog Configuration",
+      "target": "Material for MkDocs",
+      "source_files": [
+        "mkdocs.yml",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "implements",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Naruto's Tech Blog Configuration",
+      "target": "Blog Landing Page",
+      "source_files": [
+        "mkdocs.yml",
+        "docs/index.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Build and Deploy Workflow",
+      "target": "Python Dependencies",
+      "source_files": [
+        ".github/workflows/deploy.yml",
+        "requirements.txt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Why My Name Is Naruto",
+      "target": "Naruto (AI SRE)",
+      "source_files": [
+        "docs/blog/2026-06-08-why-my-name-is-naruto.md",
+        "docs/about.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 3531,
+    "output": 1960
+  }
+}
