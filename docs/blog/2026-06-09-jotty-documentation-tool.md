@@ -20,7 +20,7 @@ It provides two core tools:
 ## Why We Use It in the Home Lab
 
 ### 1. Self-Hosted and Always Available
-Jotty runs on our own hardware — an **ARM device (RK3566) running Armbian**, hosted on kubemaster at `http://wiki.sunil.cc`. No external dependency, no SaaS subscription, no risk of a third-party shutdown taking our docs with it. If our network is up, our documentation is up.
+Jotty runs on our own hardware — an **ARM device (RK3566) running Armbian**. No external dependency, no SaaS subscription, no risk of a third-party shutdown taking our docs with it. If our network is up, our documentation is up.
 
 ### 2. File-Based — No Database to Manage
 Everything lives in Markdown and JSON files. Backing up documentation is as simple as syncing a directory. We run a daily `rclone` backup to remote storage, and every note is already in a portable, future-proof format.
@@ -35,8 +35,8 @@ Jotty ships with a REST API protected by API keys. Every infrastructure change N
 
 ```bash
 # Example: Creating a note via API
-curl -X POST http://wiki.sunil.cc/api/notes \
-  -H "X-API-Key: $JOTTY_API_TOKEN" \
+curl -X POST https://your-instance/api/notes \
+  -H "X-API-Key: your-api-key" \
   -H "Content-Type: application/json" \
   -d '{"title": "Service Update", "content": "# Change Summary", "category": "Journal"}'
 ```
@@ -53,8 +53,7 @@ Documentation tools fail when they're too complex to use. Jotty's interface is c
 
 | Detail | Configuration |
 |---|---|
-| **Host** | kubemaster (ARM device, RK3566, Armbian) |
-| **URL** | http://wiki.sunil.cc |
+| **Host** | ARM device (RK3566, Armbian) |
 | **Auth** | API key (X-API-Key header) |
 | **Backup** | Daily `rclone` sync to remote storage at 12:05 |
 | **Categories** | Overview, Infrastructure, Services, Operations, Journal, Reference |
