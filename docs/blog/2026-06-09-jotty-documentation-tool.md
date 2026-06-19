@@ -1,51 +1,58 @@
-# Jotty: The Documentation Tool That Just Works
+# Jotty: Self-Hosted Documentation That Just Works
 
 *Posted on 2026-06-09*
 
-Documentation is the backbone of any well-run infrastructure. Without it, tribal knowledge walks out the door, incidents take longer to resolve, and onboarding new systems becomes a guessing game. That's why we use **Jotty** — a self-hosted, file-based documentation and checklist tool that keeps our home lab running smoothly.
+Documentation is the silent backbone of every well-run infrastructure — yet it's the first thing to fall behind when things get busy. We keep ours in **Jotty**, a self-hosted, file-based documentation tool designed to stay out of your way.
 
 ---
 
 ## What Is Jotty?
 
-[Jotty](https://jotty.page/) is a self-hosted, file-based alternative to heavyweight documentation platforms. No database, no cloud dependency, no complex setup. Everything is stored in simple Markdown and JSON files in a single data directory.
+[Jotty](https://jotty.page/) is a lightweight alternative to heavy wiki platforms. No database. No cloud subscription. No vendor lock-in. Everything is stored as plain Markdown and JSON files on disk.
 
-It provides two core tools:
+It gives you two core tools:
 
-- **Notes** — A clean WYSIWYG editor powered by TipTap, with full Markdown support and syntax highlighting. Every note is a plain Markdown file on disk.
-- **Checklists** — Task lists with drag-and-drop reordering, progress bars, and categories. Supports both simple checklists and advanced task projects with Kanban boards and time tracking.
+- **Notes** — A WYSIWYG editor powered by TipTap with Markdown support and syntax highlighting. Every note is a plain `.md` file.
+- **Checklists** — Task lists with drag-and-drop reordering, progress bars, categories, and optional Kanban boards with time tracking.
 
 ---
 
-## Why We Use It in the Home Lab
+## Why We Use It
 
-### 1. Self-Hosted and Always Available
-Jotty runs on our own hardware — an **ARM device (RK3566) running Armbian**. No external dependency, no SaaS subscription, no risk of a third-party shutdown taking our docs with it. If our network is up, our documentation is up.
+### Self-Hosted, Always Available
+Jotty runs on our own ARM device (RK3566 / Armbian). No external dependency, no SaaS bill, no risk of a third-party shutdown taking our docs with it. If the lab is up, our documentation is up.
 
-### 2. File-Based — No Database to Manage
-Everything lives in Markdown and JSON files. Backing up documentation is as simple as syncing a directory. We run a daily `rclone` backup to remote storage, and every note is already in a portable, future-proof format.
-
-No database migrations, no corrupted tables, no "the doc engine is down" incidents.
-
-### 3. Notes and Checklists in One Place
-Jotty isn't just a wiki — it's also a task manager. Our operational runbooks live alongside journal entries for config changes, incident post-mortems, and service documentation. When a host migration happens, we document it as a note and track the steps as a checklist. One tool, one place.
-
-### 4. API-First for Automation
-Jotty ships with a REST API protected by API keys. Every infrastructure change Naruto performs gets automatically documented — no manual step required. Push a config update? Logged. Fix a DNS issue? Documented. The API makes it trivial to keep documentation current as a side effect of routine work.
+### File-Based Storage
+No database migrations, no corrupted tables, no "the wiki is down" incidents. Every note is a Markdown file on disk. Backing up is as simple as syncing a directory:
 
 ```bash
-# Example: Creating a note via API
+rclone sync /data/jotty remote:jotty-backup
+```
+
+We run this daily at 12:05 — automated, unattended, reliable.
+
+### Notes + Checklists in One Tool
+Operational runbooks live alongside incident post-mortems, config change logs, and service documentation. When a migration happens, we write a note for the plan and track the steps as a checklist. One place for everything.
+
+### API-First for Automation
+Every infrastructure change Naruto performs gets auto-documented via Jotty's REST API. No manual entry required — it happens as a side effect of routine work.
+
+```bash
 curl -X POST https://your-instance/api/notes \
   -H "X-API-Key: your-api-key" \
   -H "Content-Type: application/json" \
-  -d '{"title": "Service Update", "content": "# Change Summary", "category": "Journal"}'
+  -d '{
+    "title": "DNS Update",
+    "content": "# Change Summary\nUpdated Pi-hole upstream...",
+    "category": "Operations"
+  }'
 ```
 
-### 5. PGP Encryption for Sensitive Data
-Not all documentation is meant for everyone. Jotty supports full PGP encryption for notes containing sensitive information — credentials, network details, or anything that shouldn't be readable by every user on the instance.
+### PGP Encryption
+Sensitive credentials and network details can be encrypted per-note using PGP. Not everything in the wiki needs to be readable by everyone.
 
-### 6. Clean UI, Low Friction
-Documentation tools fail when they're too complex to use. Jotty's interface is clean and fast. Notes open instantly, checklists are drag-and-drop, and the WYSIWYG editor means no one has to learn Markdown syntax to contribute. Low friction means people actually keep docs up to date.
+### Clean, Fast UI
+Documentation tools fail when they're friction to use. Jotty's interface is fast and minimal — WYSIWYG editing means nobody has to learn Markdown to contribute, but the underlying files stay portable.
 
 ---
 
@@ -54,18 +61,29 @@ Documentation tools fail when they're too complex to use. Jotty's interface is c
 | Detail | Configuration |
 |---|---|
 | **Host** | ARM device (RK3566, Armbian) |
-| **Auth** | API key (X-API-Key header) |
-| **Backup** | Daily `rclone` sync to remote storage at 12:05 |
-| **Categories** | Overview, Infrastructure, Services, Operations, Journal, Reference |
+| **Auth** | API key via `X-API-Key` header |
+| **Backup** | Daily `rclone sync` at 12:05 UTC |
+| **Categories** | Infrastructure, Services, Operations, Journal, Reference |
+
+---
+
+## Why Not Something Else?
+
+- **Confluence?** — Overkill for a home lab. Heavy, slow, expensive.
+- **Bookstack?** — Nice, but adds a database layer we don't need.
+- **Git-based wikis?** — Great for code, poor for quick edits and checklists.
+- **Notion?** — SaaS. Our docs shouldn't live on someone else's servers.
+
+Jotty sits in the sweet spot: self-hosted but not database-heavy, file-based but with a proper API, simple but not limiting.
 
 ---
 
 ## The Bottom Line
 
-Jotty hits the sweet spot for a home lab documentation platform: self-hosted, simple, file-based, and automatable. It doesn't try to be an enterprise wiki — it tries to be the tool you actually use every day. And in our lab, it is.
+Jotty doesn't try to be an enterprise wiki. It tries to be the documentation tool you actually use — and in our lab, it is. Self-hosted, file-based, automatable, and always available.
 
-For anyone running infrastructure that needs documented, [jotty.page](https://jotty.page/) is worth a look.
+If you're running infrastructure that needs documenting, give it a look at **[jotty.page](https://jotty.page/)**.
 
 ---
 
-*Next up: How we structure our Jotty documentation categories and the naming conventions that keep everything findable.*
+*Next up: How we structure our documentation categories and naming conventions to keep everything findable.*
